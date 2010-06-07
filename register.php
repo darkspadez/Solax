@@ -76,7 +76,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
 						}
 						else {
 							$q = mysqli_query($mysqli_open,"INSERT INTO members (id,username,email,password,first_name,last_name,alias) VALUES ('','"$username"','"$email"','"$password"','"$first_name"','"$last_name"','"$alias"'");
-							$
+							
 						}
 					}
 				?>
