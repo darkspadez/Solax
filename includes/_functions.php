@@ -17,4 +17,12 @@ function rand_str($length = 32, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl
     // Return the string
     return $string;
 }
+// Cleans input for mysql
+function clean($v) 
+{
+	// Stripslashes and Real escape string of the value
+	stripslashes(mysqli_real_escape_string($v));
+	// Reurn the value
+	return $v;
+}
 ?>

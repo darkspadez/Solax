@@ -26,7 +26,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
                 <div class="news">
                 <?php
 					if($_GET['action'] == "do") {
-						if(empty($_POST['username']) OR empty($_POST['first_name']) OR empty($_POST['last_name']) OR empty($_POST['alias']) OR empty($_POST['email']) OR empty($_POST['fpassword']) OR empty($_POST['confirm_password'])) {
+						if(empty($_POST['username']) || empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['alias']) || empty($_POST['email']) || empty($_POST['fpassword']) || empty($_POST['confirm_password'])) {
 				?>
                     You did not fill in all fields please try again.
                 	<form action="register.php?action=do" method="post">
@@ -68,13 +68,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
                         <?php
 						}
 						else {
-							$username = mysqli_real_escape_string($_POST['username']);
-							$first_name = mysqli_real_escape_string($_POST['first_name']);
-							$last_name = mysqli_real_escape_string($_POST['last_name']);
-							$alias = mysqli_real_escape_string($_POST['alias']);
-							$email = mysqli_real_escape_string($_POST['email']);
-							$password = mysqli_real_escape_string(md5($_POST['password']));
-							$confirm_password = mysqli_real_escape_string(md5($_POST['confirm_password']));
+							$username = stripslashes(mysqli_real_escape_string($_POST['username']));
+							$first_name = stripslashes(mysqli_real_escape_string($_POST['first_name']));
+							$last_name = stripslashes(mysqli_real_escape_string($_POST['last_name']));
+							$alias = stripslashes(mysqli_real_escape_string($_POST['alias']));
+							$email = stripslashes(mysqli_real_escape_string($_POST['email']));
+							$password = stripslashes(mysqli_real_escape_string(md5($_POST['password'])));
+							$confirm_password = stripslashes(mysqli_real_escape_string(md5($_POST['confirm_password'])));
 							if($password != $confirm_password) {
 							?>
                 	Your passwords did not match please try again.
