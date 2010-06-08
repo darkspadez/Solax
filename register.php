@@ -120,7 +120,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
 								$key = rand_str();
 								$active = "no";
 								$q = mysqli_query($mysqli_open,"INSERT INTO members (id,username,email,password,first_name,last_name,alias,key,active) VALUES ('','".$username."','".$email."','".$password."','".$first_name."','".$last_name."','".$alias."','".$key."','".$active."'");
-								if(($result = @mysqli_query($q)) === false) {
+						  		if(($result = @mysqli_query($q)) === false) {
 									echo "There was an error with the database and registering you. Please try again, If problem continues please contact the site admin regarding this problem.\n" . mysqli_error() . "\n" . mysqli_errno();
 								}
 								else {
@@ -128,7 +128,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
 									$c = mysqli_fetch_assoc($s);
 									$site_name = $c['site_name'];
 									$site_email = $c['site_email'];
-									$site_addr = $c['site_addr'] . "/register.php?action=confirm&key=" . $key;
+									$site_addr = $c['site_addr'] . "/register.php?action=confirm&username=" . $username . "&key=" . $key;
 									$to = $email;
 									$from = "From: $site_name <$site_email>";
 									$subject = "$site_name - Confirm Registration";
@@ -143,6 +143,23 @@ $site_name";
 								}
 							}
 						}
+					}
+					elseif(($_GET['action'] == "confirm") && (isset($_GET['username'])) && (isset($_GET['key']))) {
+						$username = $_GET['username'];
+						$key = $_GET['key'];
+						$q = mysqli_query($mysqli_open,"SELECT * FROM members WHERE username='".$username."' AND key='".$key."'");
+						if(mysqli_num_rows($q) == 1) {
+							$active = "yes";
+							$c = mysqli_query($mysqli_open,"UPDATE members SET active='".$active."' WHERE username='".$username."' AND key='".$key."'")
+						}
+						/* 
+						else
+							echo key/username didnt match
+							echo form to try again
+						*/
+					}
+					elseif($_GET['action'] == "confirm") {
+						
 					}
 					else {
 					?>
