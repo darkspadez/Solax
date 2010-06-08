@@ -26,7 +26,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
                 <div class="news">
                 <?php
 					if($_GET['action'] == "do") {
-						if(empty($_POST['username']) || empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['alias']) || empty($_POST['email']) || empty($_POST['fpassword']) || empty($_POST['confirm_password'])) {
+						if(empty($_POST['username']) || empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['alias']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
 				?>
                     You did not fill in all fields please try again.
                 	<form action="register.php?action=do" method="post">
@@ -68,13 +68,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
                         <?php
 						}
 						else {
-							$username = stripslashes(mysqli_real_escape_string($_POST['username']));
-							$first_name = stripslashes(mysqli_real_escape_string($_POST['first_name']));
-							$last_name = stripslashes(mysqli_real_escape_string($_POST['last_name']));
-							$alias = stripslashes(mysqli_real_escape_string($_POST['alias']));
-							$email = stripslashes(mysqli_real_escape_string($_POST['email']));
-							$password = stripslashes(mysqli_real_escape_string(md5($_POST['password'])));
-							$confirm_password = stripslashes(mysqli_real_escape_string(md5($_POST['confirm_password'])));
+							$username = clean($_POST['username']);
+							$first_name = clean($_POST['first_name']);
+							$last_name = clean($_POST['last_name']);
+							$alias = clean($_POST['alias']);
+							$email = clean($_POST['email']);
+							$password = clean(md5($_POST['password']));
+							$confirm_password = clean(md5($_POST['confirm_password']));
 							if($password != $confirm_password) {
 							?>
                 	Your passwords did not match please try again.
@@ -140,6 +140,9 @@ Sincerely,\n
 $site_name";
 									mail($to, $subject, $message, $from);
 									echo "Thank you for registering, Please check your email's inbox for a confirmation email to activate your account. You will not be able to login untill you have done so.";
+									/* PSEUDO CODE START
+									echo form to input key and username
+									PSEUDO CODE END */
 								}
 							}
 						}
