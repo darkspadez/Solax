@@ -150,13 +150,13 @@ $site_name";
 						$q = mysqli_query($mysqli_open,"SELECT * FROM members WHERE username='".$username."' AND key='".$key."'");
 						if(mysqli_num_rows($q) == 1) {
 							$active = "yes";
-							$c = mysqli_query($mysqli_open,"UPDATE members SET active='".$active."' WHERE username='".$username."' AND key='".$key."'")
+							$c = mysqli_query($mysqli_open,"UPDATE members SET active='".$active."' WHERE username='".$username."' AND key='".$key."'");
 						}
-						/* 
+						/* PSEUDO CODE START
 						else
 							echo key/username didnt match
 							echo form to try again
-						*/
+						PSEUDO CODE END */
 					}
 					elseif($_GET['action'] == "confirm") {
 						
