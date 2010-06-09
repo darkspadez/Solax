@@ -27,7 +27,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
                 <?php
 					if($_GET['action'] == "do") {
 						if(empty($_POST['username']) || empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['alias']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
-                    		echo "You did not fill in all fields please try again.\n";
+                    		echo "You did not fill in all fields please try again.<br />";
 							include($_SERVER["DOCUMENT_ROOT"] . "/forms/_register.php");
 						}
 						else {
@@ -39,33 +39,37 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
 							$password = clean(md5($_POST['password']));
 							$confirm_password = clean(md5($_POST['confirm_password']));
 							if($password != $confirm_password) {
-                				echo "Your passwords did not match please try again.\n";
+                				echo "Your passwords did not match please try again.<br />";
                 				include($_SERVER["DOCUMENT_ROOT"] . "/forms/_register.php");
 							}
 							else {
-								$key = rand_str();
+								$confirm_key = rand_str();
 								$active = "no";
-								$q = mysqli_query($mysqli_open,"INSERT INTO members (id,username,email,password,first_name,last_name,alias,key,active) VALUES ('','".$username."','".$email."','".$password."','".$first_name."','".$last_name."','".$alias."','".$key."','".$active."'");
-						  		if(($result = @mysqli_query($q)) === false) {
-									echo "There was an error with the database and registering you. Please try again, If problem continues please contact the site admin regarding this problem.\n" . mysqli_error() . "\n" . mysqli_errno();
+								$q = "INSERT INTO members (id,username,email,password,first_name,last_name,alias,confirm_key,active) VALUES ('','".$username."','".$email."','".$password."','".$first_name."','".$last_name."','".$alias."','".$confirm_key."','".$active."')";
+						  		if(($result = @mysql_query($q)) === false) {
+									echo "There was an error with the database and registering you. Please try again, If problem continues please contact the site admin regarding this problem.<br />" . mysql_error() . "<br />" . mysql_errno();
 								}
 								else {
-									$s = mysqli_query($mysqli_open,"SELECT * FROM config");
-									$c = mysqli_fetch_assoc($s);
+									$s = mysql_query("SELECT * FROM config");
+									$c = mysql_fetch_assoc($s);
 									$site_name = $c['site_name'];
 									$site_email = $c['site_email'];
-									$site_addr = $c['site_addr'] . "/register.php?action=confirm&username=" . $username . "&key=" . $key;
+									$site_addr = $c['site_addr'] . "/register.php?action=confirm&username=" . $username . "&key=" . $confirm_key;
 									$to = $email;
 									$from = "From: $site_name <$site_email>";
 									$subject = "$site_name - Confirm Registration";
-									$message = "Dear $username,\n
-Thank you for registering, we are very thankfully that you are willing to be a part of our community and we hope you enjoy your stay but first you will need to confirm your account.\n 
-You can either enter the following key: $key or by following this link: <a href=\"$site_addr\">Click Here</a>.\n
-You will not be able to login untill your confirm your account.\n
-Sincerely,\n
+									$message = "Dear $username,
+									
+Thank you for registering, we are very thankfully that you are willing to be a part of our community and we hope you enjoy your stay but first you will need to confirm your account.
+
+You can either enter the following key: $confirm_key or by following this link: <a href=\"$site_addr\">Click Here</a>.
+
+You will not be able to login untill your confirm your account.
+
+Sincerely,
 $site_name";
 									mail($to, $subject, $message, $from);
-									echo "Thank you for registering, Please check your email's inbox for a confirmation email to activate your account. You will not be able to login untill you have done so.\n";
+									echo "Thank you for registering, Please check your email's inbox for a confirmation email to activate your account. You will not be able to login untill you have done so.<br />";
 									include($_SERVER["DOCUMENT_ROOT"] . "/forms/_key.php");
 								}
 							}
@@ -73,11 +77,11 @@ $site_name";
 					}
 					elseif(($_GET['action'] == "confirm") && (isset($_GET['username'])) && (isset($_GET['key']))) {
 						$username = $_GET['username'];
-						$key = $_GET['key'];
-						$q = mysqli_query($mysqli_open,"SELECT * FROM members WHERE username='".$username."' AND key='".$key."'");
-						if(mysqli_num_rows($q) == 1) {
+						$confirm_key = $_GET['key'];
+						$q = mysql_query("SELECT * FROM members WHERE username='".$username."' AND confirm_key='".$confirm_key."'");
+						if(mysql_num_rows($q) == 1) {
 							$active = "yes";
-							$c = mysqli_query($mysqli_open,"UPDATE members SET active='".$active."' WHERE username='".$username."' AND key='".$key."'");
+							$c = mysql_query("UPDATE members SET active='".$active."' WHERE username='".$username."' AND confirm_key='".$confirm_key."'");
 							echo "Your account has successfully confirmed your account. You may now login.";
 							include($_SERVER["DOCUMENT_ROOT"] . "/forms/_login.php");
 						}

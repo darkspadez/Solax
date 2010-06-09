@@ -19,8 +19,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
       	<?php require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_left.php") ?>
         <div id="main">
         <?php
-			$newsquery = mysqli_query("SELECT * FROM news ORDER BY ID DESC LIMIT 5");
-			while($news = mysqli_fetch_array($newsquery)) {
+			$newsquery = mysql_query("SELECT * FROM news ORDER BY ID DESC LIMIT 5");
+			while($news = mysql_fetch_array($newsquery)) {
 		?>
         	<div class="news_box">
             	<div class="news_top">

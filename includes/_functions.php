@@ -21,7 +21,7 @@ function rand_str($length = 32, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl
 function clean($v) 
 {
 	// Stripslashes and Real escape string of the value
-	stripslashes(mysqli_real_escape_string($v));
+	stripslashes(mysql_real_escape_string($v));
 	// Reurn the value
 	return $v;
 }

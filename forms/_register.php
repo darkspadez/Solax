@@ -1,36 +1,36 @@
 					<form action="register.php?action=do" method="post">
                     <table>
-                    	<td>
-                        	<tr>Username:</tr>
-                            <tr><input type="text" name="username" /></tr>
-                        </td>
-                        <td>
-                        	<tr>First Name:</tr>
-                            <tr><input type="text" name="first_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Last Name:</tr>
-                            <tr><input type="text" name="last_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Alias:</tr>
-                            <tr><input type="text" name="alias" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Email:</tr>
-                            <tr><input type="text" name="email" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Password:</tr>
-                            <tr><input type="password" name="password" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Confirm Password:</tr>
-                            <tr><input type="password" name="confirm_password" /></tr>
-                        </td>
-                        <td>
-                        	<tr><input type="submit" value="Register" /></tr>
-                            <tr></tr>
-                        </td>
+                    	<tr>
+                        	<td>Username:</td>
+                            <td><input type="text" name="username" /></td>
+                        </tr>
+                        <tr>
+                        	<td>First Name:</td>
+                            <td><input type="text" name="first_name" /></td>
+                        </tr>
+                        <tr>
+                        	<td>Last Name:</td>
+                            <td><input type="text" name="last_name" /></td>
+                        </tr>
+                        <tr>
+                        	<td>Alias:</td>
+                            <td><input type="text" name="alias" /></td>
+                        </tr>
+                        <tr>
+                        	<td>Email:</td>
+                            <td><input type="text" name="email" /></td>
+                        </tr>
+                        <tr>
+                        	<td>Password:</td>
+                            <td><input type="password" name="password" /></td>
+                        </tr>
+                        <tr>
+                        	<td>Confirm Password:</td>
+                            <td><input type="password" name="confirm_password" /></td>
+                        </tr>
+                        <tr>
+                        	<td><input type="submit" value="Register" /></td>
+                            <td></td>
+                        </tr>
                     </table>
                 	</form>

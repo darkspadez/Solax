@@ -1,16 +1,16 @@
 					<form action="login.php?action=do" method="post">
                     	<table>
-                        	<td>
-                            	<tr>Username:</tr>
-                                <tr><input type="text" name="username" /></tr>
+                        	<tr>
+                            	<tr>Username:</td>
+                                <tr><input type="text" name="username" /></td>
                             </td>
-                            <td>
-                            	<tr>Password:</tr>
-                                <tr><input type="password" name="password" /></tr>
-                            </td>
-                            <td>
-                            	<tr><input type="submit" value="Login" /></tr>
-                                <tr></tr>
-                            </td>
+                            <tr>
+                            	<td>Password:</td>
+                                <td><input type="password" name="password" /></td>
+                            </tr>
+                            <tr>
+                            	<td><input type="submit" value="Login" /></td>
+                                <td></td>
+                            </tr>
                         </table>
                     </form>
