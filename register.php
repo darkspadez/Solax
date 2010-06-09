@@ -27,45 +27,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
                 <?php
 					if($_GET['action'] == "do") {
 						if(empty($_POST['username']) || empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['alias']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
-				?>
-                    You did not fill in all fields please try again.
-                	<form action="register.php?action=do" method="post">
-                    <table>
-                    	<td>
-                        	<tr>Username:</tr>
-                            <tr><input type="text" name="username" /></tr>
-                        </td>
-                        <td>
-                        	<tr>First Name:</tr>
-                            <tr><input type="text" name="first_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Last Name:</tr>
-                            <tr><input type="text" name="last_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Alias:</tr>
-                            <tr><input type="text" name="alias" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Email:</tr>
-                            <tr><input type="text" name="email" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Password:</tr>
-                            <tr><input type="password" name="password" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Confirm Password:</tr>
-                            <tr><input type="password" name="confirm_password" /></tr>
-                        </td>
-                        <td>
-                        	<tr><input type="submit" value="Register" /></tr>
-                            <tr></tr>
-                        </td>
-                    </table>
-                	</form>
-                        <?php
+                    		echo "You did not fill in all fields please try again.";
+							include($_SERVER["DOCUMENT_ROOT"] . "/forms/_register.php");
 						}
 						else {
 							$username = clean($_POST['username']);
@@ -76,45 +39,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/_functions.php");
 							$password = clean(md5($_POST['password']));
 							$confirm_password = clean(md5($_POST['confirm_password']));
 							if($password != $confirm_password) {
-							?>
-                	Your passwords did not match please try again.
-                	<form action="register.php?action=do" method="post">
-                    <table>
-                    	<td>
-                        	<tr>Username:</tr>
-                            <tr><input type="text" name="username" /></tr>
-                        </td>
-                        <td>
-                        	<tr>First Name:</tr>
-                            <tr><input type="text" name="first_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Last Name:</tr>
-                            <tr><input type="text" name="last_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Alias:</tr>
-                            <tr><input type="text" name="alias" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Email:</tr>
-                            <tr><input type="text" name="email" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Password:</tr>
-                            <tr><input type="password" name="password" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Confirm Password:</tr>
-                            <tr><input type="password" name="confirm_password" /></tr>
-                        </td>
-                        <td>
-                        	<tr><input type="submit" value="Register" /></tr>
-                            <tr></tr>
-                        </td>
-                    </table>
-                	</form>
-                			<?php
+                				echo "Your passwords did not match please try again.";
+                				include($_SERVER["DOCUMENT_ROOT"] . "/forms/_register.php");
 							}
 							else {
 								$key = rand_str();
@@ -165,44 +91,7 @@ $site_name";
 						
 					}
 					else {
-					?>
-                	<form action="register.php?action=do" method="post">
-                    <table>
-                    	<td>
-                        	<tr>Username:</tr>
-                            <tr><input type="text" name="username" /></tr>
-                        </td>
-                        <td>
-                        	<tr>First Name:</tr>
-                            <tr><input type="text" name="first_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Last Name:</tr>
-                            <tr><input type="text" name="last_name" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Alias:</tr>
-                            <tr><input type="text" name="alias" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Email:</tr>
-                            <tr><input type="text" name="email" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Password:</tr>
-                            <tr><input type="password" name="password" /></tr>
-                        </td>
-                        <td>
-                        	<tr>Confirm Password:</tr>
-                            <tr><input type="password" name="confirm_password" /></tr>
-                        </td>
-                        <td>
-                        	<tr><input type="submit" value="Register" /></tr>
-                            <tr></tr>
-                        </td>
-                    </table>
-                	</form>
-                    <?php
+						include($_SERVER["DOCUMENT_ROOT"] . "/forms/_register.php");
 					}
                     ?>
                 </div>
