@@ -66,9 +66,7 @@ Sincerely,\n
 $site_name";
 									mail($to, $subject, $message, $from);
 									echo "Thank you for registering, Please check your email's inbox for a confirmation email to activate your account. You will not be able to login untill you have done so.\n";
-									/* PSEUDO CODE START
-									echo form to input key and username
-									PSEUDO CODE END */
+									include($_SERVER["DOCUMENT_ROOT"] . "/forms/_key.php");
 								}
 							}
 						}
@@ -80,15 +78,16 @@ $site_name";
 						if(mysqli_num_rows($q) == 1) {
 							$active = "yes";
 							$c = mysqli_query($mysqli_open,"UPDATE members SET active='".$active."' WHERE username='".$username."' AND key='".$key."'");
+							echo "Your account has successfully confirmed your account. You may now login.";
+							include($_SERVER["DOCUMENT_ROOT"] . "/forms/_login.php");
 						}
-						/* PSEUDO CODE START
-						else
-							echo key/username didnt match
-							echo form to try again
-						PSEUDO CODE END */
+						else {
+							echo "They key you have tried did not match with your username. Please try again.";	
+							include($_SERVER["DOCUMENT_ROOT"] . "/forms/_key.php");
+						}
 					}
 					elseif($_GET['action'] == "confirm") {
-						
+						include($_SERVER["DOCUMENT_ROOT"] . "/forms/_key.php");
 					}
 					else {
 						include($_SERVER["DOCUMENT_ROOT"] . "/forms/_register.php");

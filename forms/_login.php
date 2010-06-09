@@ -1,15 +1,15 @@
-					<form action="register.php?action=confirm" method="get">
+					<form action="login.php?action=do" method="post">
                     	<table>
                         	<td>
                             	<tr>Username:</tr>
                                 <tr><input type="text" name="username" /></tr>
                             </td>
                             <td>
-                            	<tr>Key:</tr>
-                                <tr><input type="text" name="key" /></tr>
+                            	<tr>Password:</tr>
+                                <tr><input type="password" name="password" /></tr>
                             </td>
                             <td>
-                            	<tr><input type="submit" value="Confirm" /></tr>
+                            	<tr><input type="submit" value="Login" /></tr>
                                 <tr></tr>
                             </td>
                         </table>
