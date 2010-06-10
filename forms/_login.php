@@ -1,8 +1,8 @@
 					<form action="login.php?action=do" method="post">
                     	<table>
                         	<tr>
-                            	<tr>Username:</td>
-                                <tr><input type="text" name="username" /></td>
+                            	<td>Username:</td>
+                                <td><input type="text" name="username" /></td>
                             </td>
                             <tr>
                             	<td>Password:</td>
