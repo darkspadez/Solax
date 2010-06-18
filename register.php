@@ -8,7 +8,7 @@ require_once(getcwd() . "/includes/_functions.php");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style.css" />
-<title>Core Five Gaming</title>
+<title><?php echo $c['site_name']; ?></title>
 </head>
 <body>
 <div id="wrapper">
